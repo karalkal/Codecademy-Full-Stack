@@ -1,0 +1,6 @@
+- add a new node to the beginning (head) of the list
+- add a new node to the end (tail) of the list
+- remove a node from the beginning (head) of the list
+- remove a node from the end (tail) of the list
+- find and remove a specific node by its data
+- print out the nodes in the list in order from head to tail
