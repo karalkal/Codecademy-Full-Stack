@@ -15,7 +15,7 @@ let action = "DEFAULT";
 // ------------------------------
 // Helper Functions
 // ------------------------------
-function showCurrentPage(action) {
+function showCurrentPage() {
     console.log("Action:", action,
         "\nCurrent:", currentPage,
         "\nPrevious", previuosPages.peek(),
@@ -27,7 +27,7 @@ function openNewPage(page) {
     // update currentPage to be page
     // clear the nextPages stack
     // show the current page by calling the helper function defined in Task 1
-    previuosPages.push(page);
+    previuosPages.push(currentPage);
     currentPage = page;
     nextPages = new Stack();
     showCurrentPage();
