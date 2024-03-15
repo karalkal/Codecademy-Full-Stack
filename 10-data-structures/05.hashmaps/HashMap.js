@@ -1,9 +1,12 @@
 const LinkedList = require('./LinkedList');
 const Node = require('./Node');
 class HashMap {
+  // create an array with whatever size "empty" slots within it
+  // For every empty slot within the array (from index 0 to the length of the array), the fill method will place the string/null/whatever 
+  // This is needed for the .map method to work (as .map() only iterates over values which exist), basically will get overwritten with empty new LinkedList
   constructor(size = 0) {
     this.hashmap = new Array(size)
-      .fill(null)
+      .fill("KUREC")
       .map(() => new LinkedList());
   }
 
