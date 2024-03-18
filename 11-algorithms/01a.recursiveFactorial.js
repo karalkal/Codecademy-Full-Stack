@@ -1,6 +1,6 @@
 const recursiveFactorial = (n) => {
   if (n === 0) {
-    return 1
+    return 1;
   }
 
   if (n > 0) {
@@ -10,5 +10,5 @@ const recursiveFactorial = (n) => {
 
 }
 
-const recursiveSolution = recursiveFactorial(5);
-console.log(recursiveSolution);
+const recursiveSolution = recursiveFactorial(8);
+console.log(recursiveSolution)
