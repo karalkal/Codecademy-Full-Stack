@@ -1,38 +1,43 @@
-const testGraph = require("./testGraph.js");
+const testSingleVertexGraph = require('./testSingleVertexGraph.js');
+const testSimpleGraph = require('./testSimpleGraph.js');
+const testDisconnectedGraph = require('./testDisconnectedGraph.js');
+const testGraph = require('./testGraph.js');
+const PriorityQueue = require('./PriorityQueue.js');
 
 const dijkstras = (graph, startingVertex) => {
     const distances = {};
-    /*
-  track is the shortest paths to each vertex. Instead of recording the full path to every vertex, we just need the previous vertex. This is because we are guaranteed that the vertices leading up to the previous vertex are also the shortest distance, and we can reconstruct the full path by tracing through each vertex’s previous vertex.
-  */
-
     const previous = {};
+    const queue = new PriorityQueue();
+
+    queue.add({ vertex: startingVertex, priority: 0 });
 
     graph.vertices.forEach((vertex) => {
         distances[vertex.data] = Infinity;
         previous[vertex.data] = null;
     });
-    //apart from first one
+
     distances[startingVertex.data] = 0;
 
-    const vertex = startingVertex;
+    while (!queue.isEmpty()) {
+        const { vertex } = queue.popMin();
 
-    vertex.edges.forEach((edge) => {
-        const alternate = edge.weight + distances[vertex.data];
-        const neighborValue = edge.end.data;
+        vertex.edges.forEach((edge) => {
+            const alternate = edge.weight + distances[vertex.data];
+            const neighborValue = edge.end.data;
 
-        if (alternate < distances[neighborValue]) {
-            distances[neighborValue] = alternate;
-            previous[neighborValue] = vertex;
-        }
-    })
+            if (alternate < distances[neighborValue]) {
+                distances[neighborValue] = alternate;
+                previous[neighborValue] = vertex;
 
+                queue.add({ vertex: edge.end, priority: distances[neighborValue] })
+            }
+        })
+    }
 
     return { distances, previous };
 };
 
-const results = dijkstras(testGraph, testGraph.vertices[0]);
+const results = dijkstras(testGraph, testSimpleGraph.vertices[0]);
 console.log(results);
 
 module.exports = dijkstras;
-/*  */
